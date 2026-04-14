@@ -14,4 +14,5 @@ FROM amazoncorretto:8-alpine-jre
 RUN mkdir -p /opt/msworkdir/ms-laboratory
 WORKDIR /opt/msworkdir/ms-laboratory
 COPY --from=builder /app/target/app.jar /opt/msworkdir/ms-laboratory/ms-laboratory.jar
-ENTRYPOINT ["java", "-jar", "/opt/msworkdir/ms-laboratory/ms-laboratory.jar"]
+ENTRYPOINT ["java", "-jar", "/opt/msworkdir/ms-laboratory/ms-laboratory.jar", "--spring.config.location=/config/application.properties"]
+
