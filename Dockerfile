@@ -11,8 +11,8 @@ RUN JAR_FILE=$(ls /app/target/*.jar | grep -v 'original' | head -n 1) && \
 	
 # FINAL STAGE
 FROM amazoncorretto:8-alpine-jre
-RUN mkdir -p /opt/msworkdir/ms-laboratory
-WORKDIR /opt/msworkdir/ms-laboratory
-COPY --from=builder /app/target/app.jar /opt/msworkdir/ms-laboratory/ms-laboratory.jar
-ENTRYPOINT ["java", "-jar", "/opt/msworkdir/ms-laboratory/ms-laboratory.jar", "--spring.config.location=/config/application.properties"]
+COPY --from=builder /app/target/app.jar /ms-laboratory.jar
+ENTRYPOINT ["java", "-jar", "/ms-laboratory.jar", "--spring.config.additional-location=/config/"]
+
+
 
